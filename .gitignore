@@ -1,0 +1,26 @@
+# CLion
+.idea/
+cmake-build-*/
+
+# Build artifacts
+*.exe
+*.obj
+*.o
+*.dll
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.res
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# Windows
+Thumbs.db
+desktop.ini
+.DS_Store
