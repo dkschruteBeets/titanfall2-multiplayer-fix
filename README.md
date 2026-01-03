@@ -5,8 +5,10 @@ Fixes the "Contacting Respawn Servers" connection issue on modern Intel CPUs (10
 ## Problem
 Titanfall 2 fails to connect to multiplayer servers on modern Intel CPUs due to an OpenSSL bug with AVX-512/VAES instructions.
 
-## Solution
-This launcher sets the `OPENSSL_ia32cap` environment variable **only for Titanfall 2**, avoiding system-wide changes that could affect other applications.
+## Solutions
+This repo offers two options:
+- **Shim method (recommended):** Uses a Windows Application Compatibility shim to set `OPENSSL_ia32cap` only for `Titanfall2.exe`.
+- **Launcher method:** A small launcher that sets `OPENSSL_ia32cap` and starts the game.
 
 ### Alternative: System-Wide Fix
 You can also set the environment variable globally (affects all applications):
@@ -17,14 +19,14 @@ You can also set the environment variable globally (affects all applications):
    - Value: `~0x200000200000000`
 4. Restart your computer
 
-⚠️ **This affects all OpenSSL applications system-wide.** The launcher method is recommended.
+⚠️ **This affects all OpenSSL applications system-wide.** The shim method is recommended.
 
 ## Usage
-1. Download `TF2Fix.exe` from [Releases](../../releases)
-2. Place it in your Titanfall 2 game directory
-3. Run `TF2Fix.exe` instead of the normal game launcher
+Choose a method:
+- Shim method: see `shim-method/README.md`
+- Launcher method: see `launcher-method/README.md`
 
-## Building from Source
+## Building from Source (Launcher Method)
 
 ### Prerequisites
 - CMake
@@ -36,7 +38,7 @@ You can also set the environment variable globally (affects all applications):
 ### Build
 ```bash
 git clone https://github.com/dkschruteBeets/titanfall2-multiplayer-fix.git
-cd titanfall2-multiplayer-fix
+cd titanfall2-multiplayer-fix/launcher-method/source
 cmake -B build -G "MinGW Makefiles"
 cmake --build build --config Release
 ```
